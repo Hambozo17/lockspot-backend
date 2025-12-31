@@ -19,8 +19,8 @@ from .views import (
     NotificationListView, NotificationMarkReadView, NotificationMarkAllReadView,
     # Discounts
     DiscountView,
-    # Health
-    health_check
+    # Health & Seed
+    health_check, seed_database
 )
 
 urlpatterns = [
@@ -60,4 +60,7 @@ urlpatterns = [
     
     # ==================== DISCOUNTS ====================
     path('discounts/validate/', DiscountView.as_view(), name='discount-validate'),
+    
+    # ==================== ADMIN/SEED ====================
+    path('seed/', seed_database, name='seed-database'),
 ]
