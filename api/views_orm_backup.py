@@ -32,7 +32,7 @@ from .serializers import (
 )
 
 # Import raw SQL functions
-from db_utils import DatabaseConnection
+from lockspot_backend.db_utils import DatabaseConnection
 from .authentication import create_access_token, get_token_expiration_seconds
 
 

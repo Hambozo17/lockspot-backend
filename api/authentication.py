@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
-from db_utils import DatabaseConnection
+from lockspot_backend.db_utils import DatabaseConnection
 
 
 class MockUser:
