@@ -1275,14 +1275,14 @@ def seed_database(request):
                 cursor.close()
                 return Response({'message': 'Database already seeded', 'status': 'skipped'})
             
-            # Create pricing tiers (include created_at)
+            # Create pricing tiers
             cursor.execute("DELETE FROM lockers_pricingtier")
             cursor.execute("""
-                INSERT INTO lockers_pricingtier (name, size, base_price, hourly_rate, daily_rate, weekly_rate, is_active, created_at)
+                INSERT INTO lockers_pricingtier (name, size, base_price, hourly_rate, daily_rate, weekly_rate, is_active)
                 VALUES 
-                ('Economy Small', 'Small', 0, 5.00, 30.00, 150.00, 1, NOW()),
-                ('Economy Medium', 'Medium', 0, 8.00, 50.00, 250.00, 1, NOW()),
-                ('Economy Large', 'Large', 0, 12.00, 80.00, 400.00, 1, NOW())
+                ('Economy Small', 'Small', 0, 5.00, 30.00, 150.00, 1),
+                ('Economy Medium', 'Medium', 0, 8.00, 50.00, 250.00, 1),
+                ('Economy Large', 'Large', 0, 12.00, 80.00, 400.00, 1)
             """)
             conn.commit()
             
@@ -1306,10 +1306,10 @@ def seed_database(request):
             
             created_locations = []
             for name, street, city, country, lat, lng in locations:
-                # Create address (include created_at for database compatibility)
+                # Create address
                 cursor.execute("""
-                    INSERT INTO lockers_locationaddress (street_address, city, zip_code, country, latitude, longitude, created_at)
-                    VALUES (%s, %s, %s, %s, %s, %s, NOW())
+                    INSERT INTO lockers_locationaddress (street_address, city, zip_code, country, latitude, longitude)
+                    VALUES (%s, %s, %s, %s, %s, %s)
                 """, (street, city, '12345', country, lat, lng))
                 addr_id = cursor.lastrowid
                 
