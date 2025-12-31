@@ -85,8 +85,8 @@ class RegisterView(APIView):
             cursor.execute("""
                 INSERT INTO lockers_user 
                 (email, password, first_name, last_name, phone, user_type, is_verified, 
-                 is_staff, is_superuser, is_active, created_at, updated_at)
-                VALUES (%s, %s, %s, %s, %s, 'Customer', 0, 0, 0, 1, NOW(), NOW())
+                 is_staff, is_superuser, is_active, created_at, updated_at, date_joined)
+                VALUES (%s, %s, %s, %s, %s, 'Customer', 0, 0, 0, 1, NOW(), NOW(), NOW())
             """, (email, hashed_password, first_name, last_name, phone))
             
             user_id = cursor.lastrowid
