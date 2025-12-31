@@ -1275,16 +1275,17 @@ def seed_database(request):
                 cursor.close()
                 return Response({'message': 'Database already seeded', 'status': 'skipped'})
             
-            # Create pricing tiers (with created_at)
-            cursor.execute("DELETE FROM lockers_pricingtier")
-            cursor.execute("""
-                INSERT INTO lockers_pricingtier (name, size, base_price, hourly_rate, daily_rate, weekly_rate, is_active, created_at)
-                VALUES 
-                ('Economy Small', 'Small', 0, 5.00, 30.00, 150.00, 1, NOW()),
-                ('Economy Medium', 'Medium', 0, 8.00, 50.00, 250.00, 1, NOW()),
-                ('Economy Large', 'Large', 0, 12.00, 80.00, 400.00, 1, NOW())
-            """)
-            conn.commit()
+            # Check if pricing tiers exist, create if not
+            cursor.execute("SELECT COUNT(*) as cnt FROM lockers_pricingtier")
+            if cursor.fetchone()['cnt'] == 0:
+                cursor.execute("""
+                    INSERT INTO lockers_pricingtier (name, size, base_price, hourly_rate, daily_rate, weekly_rate, is_active)
+                    VALUES 
+                    ('Economy Small', 'Small', 0, 5.00, 30.00, 150.00, 1),
+                    ('Economy Medium', 'Medium', 0, 8.00, 50.00, 250.00, 1),
+                    ('Economy Large', 'Large', 0, 12.00, 80.00, 400.00, 1)
+                """)
+                conn.commit()
             
             # Get tier IDs
             cursor.execute("SELECT id FROM lockers_pricingtier WHERE size='Small' LIMIT 1")
@@ -1306,18 +1307,18 @@ def seed_database(request):
             
             created_locations = []
             for name, street, city, country, lat, lng in locations:
-                # Create address
+                # Create address (minimal fields)
                 cursor.execute("""
-                    INSERT INTO lockers_locationaddress (street_address, city, zip_code, country, latitude, longitude)
-                    VALUES (%s, %s, %s, %s, %s, %s)
-                """, (street, city, '12345', country, lat, lng))
+                    INSERT INTO lockers_locationaddress (street_address, city, country, latitude, longitude)
+                    VALUES (%s, %s, %s, %s, %s)
+                """, (street, city, country, lat, lng))
                 addr_id = cursor.lastrowid
                 
-                # Create location
+                # Create location (minimal fields)
                 cursor.execute("""
                     INSERT INTO lockers_lockerlocation 
-                    (name, address_id, description, operating_hours_start, operating_hours_end, is_active, created_at, updated_at)
-                    VALUES (%s, %s, %s, '06:00:00', '23:00:00', 1, NOW(), NOW())
+                    (name, address_id, description, operating_hours_start, operating_hours_end, is_active)
+                    VALUES (%s, %s, %s, '06:00:00', '23:00:00', 1)
                 """, (name, addr_id, f'Smart locker facility at {name}, {city}'))
                 loc_id = cursor.lastrowid
                 created_locations.append(name)
@@ -1329,8 +1330,8 @@ def seed_database(request):
                     for i in range(5):
                         cursor.execute("""
                             INSERT INTO lockers_lockerunit 
-                            (location_id, tier_id, unit_number, size, status, qr_code, created_at, updated_at)
-                            VALUES (%s, %s, %s, %s, 'Available', %s, NOW(), NOW())
+                            (location_id, tier_id, unit_number, size, status, qr_code)
+                            VALUES (%s, %s, %s, %s, 'Available', %s)
                         """, (loc_id, tier_id, f'{prefix}-{unit:03d}', size, f'QR-{prefix}-{unit:03d}'))
                         unit += 1
             
