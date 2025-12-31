@@ -10,7 +10,8 @@ django-cors-headers>=4.3.0
 django-jazzmin>=3.0.0
 
 # Database
-mysqlclient>=2.2.0  # For MySQL (optional)
+mysqlclient>=2.2.0  # For Django ORM
+mysql-connector-python>=8.0.0  # For raw SQL (db_utils.py)
 
 # Authentication
 PyJWT>=2.8.0
