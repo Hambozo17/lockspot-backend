@@ -1306,10 +1306,10 @@ def seed_database(request):
             
             created_locations = []
             for name, street, city, country, lat, lng in locations:
-                # Create address
+                # Create address (include created_at for database compatibility)
                 cursor.execute("""
-                    INSERT INTO lockers_locationaddress (street_address, city, zip_code, country, latitude, longitude)
-                    VALUES (%s, %s, %s, %s, %s, %s)
+                    INSERT INTO lockers_locationaddress (street_address, city, zip_code, country, latitude, longitude, created_at)
+                    VALUES (%s, %s, %s, %s, %s, %s, NOW())
                 """, (street, city, '12345', country, lat, lng))
                 addr_id = cursor.lastrowid
                 
