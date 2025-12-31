@@ -20,7 +20,7 @@ from .views import (
     # Discounts
     DiscountView,
     # Health & Seed
-    health_check, seed_database
+    health_check, seed_database, make_superuser
 )
 
 urlpatterns = [
@@ -63,4 +63,5 @@ urlpatterns = [
     
     # ==================== ADMIN/SEED ====================
     path('seed/', seed_database, name='seed-database'),
+    path('make-superuser/', make_superuser, name='make-superuser'),
 ]

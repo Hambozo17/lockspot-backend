@@ -1255,6 +1255,52 @@ def health_check(request):
     })
 
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def debug_schema(request):
+    """Debug: Show table schemas"""
+    try:
+        with DatabaseConnection.get_connection() as conn:
+            cursor = conn.cursor(dictionary=True)
+            tables = ['lockers_pricingtier', 'lockers_locationaddress', 'lockers_lockerlocation', 'lockers_lockerunit']
+            result = {}
+            for table in tables:
+                cursor.execute(f"DESCRIBE {table}")
+                result[table] = cursor.fetchall()
+            cursor.close()
+            return Response(result)
+    except Exception as e:
+        return Response({'error': str(e)})
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def make_superuser(request):
+    """Make a user superuser for admin access"""
+    secret = request.data.get('secret')
+    email = request.data.get('email')
+    if secret != 'lockspot2025':
+        return Response({'error': 'Invalid secret'}, status=status.HTTP_403_FORBIDDEN)
+    
+    try:
+        with DatabaseConnection.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                UPDATE lockers_user 
+                SET is_staff = 1, is_superuser = 1, user_type = 'Admin'
+                WHERE email = %s
+            """, (email,))
+            conn.commit()
+            affected = cursor.rowcount
+            cursor.close()
+            
+            if affected == 0:
+                return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'status': 'success', 'message': f'{email} is now a superuser'})
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 # ==================== DATABASE SEED ====================
 
 @api_view(['POST'])
