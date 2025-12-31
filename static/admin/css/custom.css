@@ -1,0 +1,340 @@
+/* LockSpot Admin Custom Theme - Matching App Colors */
+
+:root {
+    --primary-brown: #794D37;
+    --primary-brown-dark: #5D3A2A;
+    --primary-brown-light: #8B5A42;
+    --background-light: #F5F5F5;
+    --card-beige: #EFEBE9;
+    --text-dark: #212121;
+    --status-green: #4CAF50;
+    --status-orange: #FF9800;
+    --status-red: #F44336;
+}
+
+/* Navbar */
+.main-header.navbar {
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-brown-dark) 100%) !important;
+}
+
+.main-header .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.main-header .navbar-nav .nav-link:hover {
+    color: #fff !important;
+}
+
+/* Brand/Logo */
+.brand-link {
+    background: var(--primary-brown-dark) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.brand-link .brand-text {
+    color: #fff !important;
+    font-weight: 600 !important;
+}
+
+/* Sidebar */
+.main-sidebar {
+    background: linear-gradient(180deg, var(--primary-brown) 0%, var(--primary-brown-dark) 100%) !important;
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-dark-primary .nav-sidebar > .nav-item.menu-open > .nav-link,
+.nav-sidebar .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #fff !important;
+}
+
+.nav-sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.nav-sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+}
+
+.nav-sidebar .nav-icon {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.nav-sidebar .nav-header {
+    color: rgba(255, 255, 255, 0.5) !important;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+/* Sidebar Search */
+.sidebar .form-control-sidebar {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+}
+
+.sidebar .form-control-sidebar::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    background-color: var(--background-light) !important;
+}
+
+/* Cards */
+.card {
+    background-color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-header {
+    background-color: var(--card-beige) !important;
+    border-bottom: 1px solid rgba(121, 77, 55, 0.1) !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.card-title {
+    color: var(--text-dark) !important;
+    font-weight: 600 !important;
+}
+
+/* Buttons - Primary */
+.btn-primary {
+    background-color: var(--primary-brown) !important;
+    border-color: var(--primary-brown) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--primary-brown-dark) !important;
+    border-color: var(--primary-brown-dark) !important;
+}
+
+/* Buttons - Success (keep green for actions) */
+.btn-success {
+    background-color: var(--status-green) !important;
+    border-color: var(--status-green) !important;
+}
+
+/* Buttons - Outline */
+.btn-outline-primary {
+    color: var(--primary-brown) !important;
+    border-color: var(--primary-brown) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-brown) !important;
+    color: #fff !important;
+}
+
+/* Links */
+a {
+    color: var(--primary-brown);
+}
+
+a:hover {
+    color: var(--primary-brown-dark);
+}
+
+/* Tables */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(239, 235, 233, 0.5) !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--card-beige) !important;
+}
+
+.table thead th {
+    background-color: var(--primary-brown) !important;
+    color: #fff !important;
+    border-color: var(--primary-brown-dark) !important;
+    font-weight: 500 !important;
+}
+
+/* Form Controls */
+.form-control:focus {
+    border-color: var(--primary-brown) !important;
+    box-shadow: 0 0 0 0.2rem rgba(121, 77, 55, 0.25) !important;
+}
+
+/* Select2 */
+.select2-container--default .select2-selection--single:focus,
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border-color: var(--primary-brown) !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--primary-brown) !important;
+}
+
+/* Pagination */
+.page-item.active .page-link {
+    background-color: var(--primary-brown) !important;
+    border-color: var(--primary-brown) !important;
+}
+
+.page-link {
+    color: var(--primary-brown) !important;
+}
+
+.page-link:hover {
+    color: var(--primary-brown-dark) !important;
+    background-color: var(--card-beige) !important;
+}
+
+/* Breadcrumbs */
+.breadcrumb-item.active {
+    color: var(--primary-brown) !important;
+}
+
+/* Login Page */
+.login-page {
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-brown-dark) 100%) !important;
+}
+
+.login-box .card {
+    border-radius: 12px !important;
+}
+
+.login-card-body .btn-primary {
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-brown-dark) 100%) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 10px 20px !important;
+}
+
+/* Dashboard Widgets */
+.small-box {
+    border-radius: 8px !important;
+}
+
+.small-box.bg-info {
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-brown-light) 100%) !important;
+}
+
+.small-box.bg-success {
+    background: linear-gradient(135deg, var(--status-green) 0%, #45a049 100%) !important;
+}
+
+.small-box.bg-warning {
+    background: linear-gradient(135deg, var(--status-orange) 0%, #f57c00 100%) !important;
+}
+
+.small-box.bg-danger {
+    background: linear-gradient(135deg, var(--status-red) 0%, #e53935 100%) !important;
+}
+
+/* Info Box */
+.info-box {
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Checkboxes and Radio */
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: var(--primary-brown) !important;
+    border-color: var(--primary-brown) !important;
+}
+
+/* Tabs */
+.nav-tabs .nav-link.active {
+    color: var(--primary-brown) !important;
+    border-bottom: 2px solid var(--primary-brown) !important;
+}
+
+/* Progress Bars */
+.progress-bar {
+    background-color: var(--primary-brown) !important;
+}
+
+/* Badges */
+.badge-primary {
+    background-color: var(--primary-brown) !important;
+}
+
+/* Footer */
+.main-footer {
+    background-color: #fff !important;
+    border-top: 1px solid var(--card-beige) !important;
+    color: var(--text-dark) !important;
+}
+
+/* User Panel in Sidebar */
+.user-panel .info a {
+    color: #fff !important;
+}
+
+/* Dropdown Menu */
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--card-beige) !important;
+    color: var(--primary-brown) !important;
+}
+
+/* Modal */
+.modal-header {
+    background-color: var(--primary-brown) !important;
+    color: #fff !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+
+.modal-header .close {
+    color: #fff !important;
+}
+
+/* Alert Colors */
+.alert-info {
+    background-color: rgba(121, 77, 55, 0.1) !important;
+    border-color: var(--primary-brown) !important;
+    color: var(--primary-brown) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-brown-light);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-brown);
+}
+
+/* Action Buttons in List View */
+.object-tools a {
+    background-color: var(--primary-brown) !important;
+    border-radius: 4px !important;
+}
+
+.object-tools a:hover {
+    background-color: var(--primary-brown-dark) !important;
+}
+
+/* Django Admin Specific */
+#changelist-filter {
+    background: var(--card-beige) !important;
+    border-radius: 8px !important;
+}
+
+#changelist-filter h3 {
+    color: var(--primary-brown) !important;
+}
+
+#changelist-filter li.selected a {
+    color: var(--primary-brown) !important;
+    font-weight: 600 !important;
+}
