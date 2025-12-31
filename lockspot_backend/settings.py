@@ -31,6 +31,8 @@ else:
         'https://*.ngrok-free.app',
         'https://*.ngrok.io',
         'https://*.onrender.com',
+        'https://*.railway.app',
+        'https://*.up.railway.app',
         'http://localhost:8000',
         'http://127.0.0.1:8000',
     ]
@@ -200,6 +202,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
