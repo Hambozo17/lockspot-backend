@@ -1,6 +1,6 @@
 [build]
 builder = "nixpacks"
-buildCommand = "chmod +x build.sh && ./build.sh"
+buildCommand = "pip install -r requirements.txt && python manage.py collectstatic --noinput"
 
 [deploy]
-startCommand = "gunicorn lockspot_backend.wsgi --bind 0.0.0.0:$PORT"
+startCommand = "python manage.py migrate && gunicorn lockspot_backend.wsgi --bind 0.0.0.0:$PORT"
